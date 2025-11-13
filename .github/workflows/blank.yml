@@ -21,11 +21,11 @@ jobs:
           role-to-assume: arn:aws:iam::069987675187:role/abelhedi
           aws-region: eu-west-1
 
-      - name: List bucket
+      - name: List S3 buckets
         shell: bash
         run: |
-          aws s3 ls
+          # Vérifie l'identité du rôle
+          aws sts get-caller-identity
 
-        shell: bash        
-        run: |
+          # Liste les buckets S3
           aws s3 ls
