@@ -15,7 +15,8 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5.1.0
         with:
-          role-to-assume: arn:aws:iam::069987675187:oidc-provider/token.actions.githubusercontent.com
+          # role-to-assume: arn:aws:iam::069987675187:oidc-provider/token.actions.githubusercontent.com
+          role-to-assume: arn:aws:iam::069987675187:role/abelhedi
           aws-region: eu-west-1
 
       - name: List bucket
