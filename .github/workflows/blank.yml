@@ -1,5 +1,4 @@
 # Workflow exemple pour AWS
-
 name: CI
 
 on:
@@ -9,17 +8,24 @@ on:
 jobs:
   exemple:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write      # Autorise GitHub à générer un token OIDC
+      contents: read       # Nécessaire pour checkout
+
     steps:
       - uses: actions/checkout@v4
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v5.1.0
         with:
-          # role-to-assume: arn:aws:iam::069987675187:oidc-provider/token.actions.githubusercontent.com
           role-to-assume: arn:aws:iam::069987675187:role/abelhedi
           aws-region: eu-west-1
 
       - name: List bucket
+        shell: bash
+        run: |
+          aws s3 ls
+
         shell: bash        
         run: |
           aws s3 ls
